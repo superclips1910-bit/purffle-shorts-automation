@@ -45,7 +45,7 @@ jobs:
       - name: Generate and upload Short
         env:
           LLM_PROVIDER: gemini
-          LLM_MODEL: gemini-2.5-flash
+          LLM_MODEL: gemini-3.8-flash
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
           YT_TOKEN_FILE: token.json
