@@ -3,7 +3,17 @@ name: PurffleShorts
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 2 * * *"
+    # 10:00 AM Pacific
+    - cron: "0 10 * * *"
+      timezone: "America/Los_Angeles"
+
+    # 3:00 PM Pacific
+    - cron: "0 15 * * *"
+      timezone: "America/Los_Angeles"
+
+    # 8:00 PM Pacific
+    - cron: "0 20 * * *"
+      timezone: "America/Los_Angeles"
 
 jobs:
   generate:
@@ -44,7 +54,8 @@ jobs:
           SYNTHETIC_MEDIA: "true"
         run: |
           purffle-shorts make \
-            --topic "AI tools that can save you money" \
+            --source niche \
+            --niche "AI tools, artificial intelligence, technology, money-saving tech, useful websites and apps" \
             --style listicle \
             --duration 30 \
             --visuals pixabay
