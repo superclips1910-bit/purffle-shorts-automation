@@ -45,7 +45,7 @@ jobs:
       - name: Generate and upload Short
         env:
           LLM_PROVIDER: openrouter
-          LLM_MODEL: openrouter/free
+          LLM_MODEL: nvidia/nemotron-3-super-120b-a12b:free
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
           PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
           YT_TOKEN_FILE: token.json
