@@ -1,0 +1,42 @@
+name: PurffleShorts
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 2 * * *"
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Install PurffleShorts
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e .
+
+      - name: Install FFmpeg
+        uses: FedericoCarboni/setup-ffmpeg@v3
+
+      - name: Generate Short
+        env:
+          LLM_PROVIDER: openrouter
+          LLM_MODEL: openrouter/free
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
+          PYTHONUTF8: "1"
+        run: |
+          purffle-shorts make \
+            --topic "AI tools that can save you money" \
+            --style listicle \
+            --duration 30 \
+            --visuals pixabay \
+            --no-upload
